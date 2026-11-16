@@ -116,6 +116,10 @@ INSERT INTO about (member_name, student_id, part1_contribution, part2_contributi
 ('Phan Quang Huy', '106219394', 'Developed the Home and Apply pages; set up GitHub, Jira and Discord.', 'To be updated',
  'Cười thật lớn, chạy thật nhanh, sống tử tế.', 'Laugh hard, run fast, be kind.', 'Watching F1', 'Nem Nướng', 'I like black coffee'),
 ('Trần Tấn Nghĩa', '106394660', 'Developed the Jobs page.', 'To be updated',
- NULL, NULL, NULL, NULL, NULL),
+ 'Bạn bỏ lỡ 100% những cú sút mà bạn không thực hiện. – Wayne Gretzky', 'You miss 100% of the shots you don''t take. – Wayne Gretzky',
+ 'Playing badminton', 'Pizza', 'I tend to forget things easily'),
 ('Lê Phạm Hoàng Hải', '105997220', 'Developed the About Us page.', 'To be updated',
- NULL, NULL, NULL, NULL, NULL);
+ 'Sự vĩ đại không được xây nên trong khoảnh khắc chiến thắng, mà từ kỷ luật để tiếp tục khi không ai nhìn thấy.',
+ 'Greatness is not built in moments of victory, but in the discipline to keep going when nobody is watching.',
+ 'Playing basketball (Point Guard and Shooting Guard)', NULL,
+ 'I have played basketball for about 7 years and look up to Stephen Curry');
