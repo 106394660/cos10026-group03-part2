@@ -7,21 +7,35 @@ $page_author      = 'Tran Tan Nghia, COS10026 Group 03';
 $current_page     = 'jobs';
 $page_style       = <<<CSS
     .jobs-header-title {
-    color: #1b5e20;
-    border-bottom: 2px solid #1b5e20;
-    padding-bottom: 0.3em;
+      color: #1b5e20;
+      border-bottom: 2px solid #1b5e20;
+      padding-bottom: 0.3em;
+    }
+    .job-search-wrapper {
+      margin: 1.5em 0;
+    }
+    .job-search-input {
+      width: 100%;
+      max-width: 450px;
+      padding: 0.75em 1em;
+      font-size: 1rem;
+      border: 2px solid #1b5e20;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .job-search-input:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(27, 94, 32, 0.4);
+    }
+    #no-jobs-message {
+      display: none;
+      color: #555;
+      font-style: italic;
+      margin-top: 1em;
     }
 CSS;
 include 'header.inc';
 ?>
-
-<!--
-  TODO (Part 2):
-  - Read the jobs from the jobs table (see harvest_power.sql) and print each job with a PHP loop,
-  -   instead of the two hard-coded <section class="jobs-section"> blocks below.
-  - Add a search bar on this page that searches the jobs table (e.g. GET jobs.php?q=engineer or search.php).
-  - Remember: escape every value printed from the database with htmlspecialchars().
--->
 
   <main id="main-content" class="jobs-container">
 
@@ -38,6 +52,20 @@ include 'header.inc';
     <div class="jobs-main-content">
       <h1 class="jobs-header-title">Career Opportunities in Clean Energy</h1>
       <p>Join our mission to strengthen renewable technologies, manage smart grids, and deliver public engagement initiatives for clean energy solutions.</p>
+
+      <!-- Search Bar Section -->
+      <div class="job-search-wrapper">
+        <label for="job-search" class="sr-only" style="display:block; margin-bottom: 0.4em; font-weight: bold;">Search Vacancies:</label>
+        <input 
+          type="text" 
+          id="job-search" 
+          class="job-search-input" 
+          placeholder="Search by job title, reference code (e.g., RE109), or keyword..." 
+          aria-label="Search job vacancies"
+        >
+      </div>
+
+      <p id="no-jobs-message">No job vacancies match your search criteria.</p>
 
       <!-- Position 1: Section structural element -->
       <section class="jobs-section">
@@ -95,6 +123,28 @@ include 'header.inc';
       </section>
     </div>
 
-    </main>
+  </main>
+
+  <!-- Live Search Script -->
+  <script>
+    document.getElementById('job-search').addEventListener('input', function () {
+      const query = this.value.toLowerCase().trim();
+      const jobSections = document.querySelectorAll('.jobs-section');
+      const noJobsMsg = document.getElementById('no-jobs-message');
+      let visibleCount = 0;
+
+      jobSections.forEach(function (section) {
+        const text = section.textContent.toLowerCase();
+        if (text.includes(query)) {
+          section.style.display = '';
+          visibleCount++;
+        } else {
+          section.style.display = 'none';
+        }
+      });
+
+      noJobsMsg.style.display = (visibleCount === 0) ? 'block' : 'none';
+    });
+  </script>
 
 <?php include 'footer.inc'; ?>
